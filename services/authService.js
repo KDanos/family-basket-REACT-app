@@ -12,7 +12,12 @@ export const testConnection = () =>{
 
 }
 
-//Sign up 
+//Sign-up 
 export const signUp = (formData) =>{
     return api.post ('sign-up/', formData)
+}
+
+//Sign-in
+export const signIn = (formData) =>{
+    return api.post ('sign-in/', formData)
 }

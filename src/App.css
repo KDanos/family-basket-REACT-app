@@ -29,11 +29,9 @@ body {
     justify-content: center;
 }
 main {
-    
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0px 20px 20px 20px;
     text-align: center;
-    border: 1px solid black;
 }
