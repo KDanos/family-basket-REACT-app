@@ -1,8 +1,11 @@
 import './SignUpPage.css'
 import {useState} from 'react'
-import { signUp} from '../../../services/authService'
+import { signUp} from '../../services/authService'
+import { Navigate } from 'react-router'
 
 const SignUpPage = () => {
+    const navigate = Navigate()
+    
     //StateVariable
     const [formData, setFormData] = useState({
         username: '',

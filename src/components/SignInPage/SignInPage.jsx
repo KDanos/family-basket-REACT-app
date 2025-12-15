@@ -1,9 +1,12 @@
-import { signIn } from '../../../services/authService'
+import { useNavigate } from 'react-router'
+import { signIn } from '../../services/authService'
 import './SignInPage.css'
 import { useState } from 'react'
 
 
 const SignInPage = () => {
+    const navigate = useNavigate()
+    
     //State Variables
     const [formData, setFormData] = useState({
         username: "",
@@ -14,18 +17,16 @@ const SignInPage = () => {
     //Functions
     const handleChange = (e) => {
         setFormData ({...formData, [e.target.name] : e.target.value})
-        setErrorData ({...errorData, [e.target.name] : ""})
+        setErrorData ({})
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             const response = await signIn(formData)
-            console.log ('you have signed in')
+            navigate('/index')
         } catch (error) {
-            console.log ('================================')
-            console.log(error)
-            // setErrorData(error.response.data)
+            setErrorData(error.response.data)
         }
     }
 
@@ -35,12 +36,12 @@ const SignInPage = () => {
             <div id="input-container">
                 <label htmlFor="username" hidden></label>
                 <input type="text" id="username" name="username" placeholder='Username' required onChange={handleChange} />
-                {errorData.username && <p className="error-message">{`${error.data.username}`}</p>}
+                
 
                 <label htmlFor="password" hidden></label>
                 <input type="password" id="password" name="password" placeholder="password" required onChange={handleChange} />
-                {errorData.password && <p className="error-message">{`${error.data.password}`}</p>}
-
+                {errorData.detail && <p className="error-message">{`${errorData.detail}`}</p>}
+                
                 <button type="submit" className="form-button">Sign-in</button>
             </div>
             <div id="footer">
