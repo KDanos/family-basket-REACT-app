@@ -1,0 +1,45 @@
+#auth-form{
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+
+}
+  
+#input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input {
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 8px;
+    height: 2.5em;
+    width: 100%;
+}
+.form-button{
+    background-color:#29b4f5;
+    border-radius: 16px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px 0px;
+    user-select: none;
+}
+
+.form-button:hover{
+    background-color: #8FD9FB;
+    cursor: hand;
+}
+
+.form-button:active {
+    background-color:#8FD9FB ;
+    transform:scale(0.98px);
+    box-shadow: 0 2px 4px;
+}
