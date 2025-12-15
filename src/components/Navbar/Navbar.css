@@ -1,14 +1,15 @@
 #NavBar-container{ 
 position: fixed;
 top: 0;
-left: 0;
-right: 0;
-width: 100%;
+left: 60px;
+right: 60px;
+max-width: 1200px;
 height: 60px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 0 15px;
+padding: 0 20px;
 z-index: 1000;
-
+box-sizing: border-box;
+border: 1px solid black;
 }
