@@ -4,20 +4,24 @@ import NavBar from './components/Navbar/Navbar'
 import SignInPage from './components/SignInPage/SignInPage'
 import SignUpPage from './components/SignUpPage/SignUpPage'
 import BasketIndexPage from './components/BasketIndex/BasketIndex'
-import UserShowPage from './components/UserShowPage/UserShowPage'
+// import UserShowPage from './components/UserShowPage/UserShowPage'
+import NewBasketPage from './components/NewBasketPage/NewBasketPage'
 
 const App = () => {
 
   return (
     <>
-      <NavBar />
       <main>
-        <Routes>
-          <Route path="/sign-in" element={<SignInPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path='index' element={<BasketIndexPage/>}/>
-          <Route path='/profile/:userId' element={<UserShowPage/>}/>
-        </Routes>
+        <NavBar />
+        <div className="route-container">
+          <Routes>
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            {/* <Route path='/profile/:userId' element={<UserShowPage />} /> */}
+            <Route path='baskets' element={<BasketIndexPage />} />
+            <Route path='baskets/new' element={<NewBasketPage />} />
+          </Routes>
+        </div>
       </main>
     </>
   )

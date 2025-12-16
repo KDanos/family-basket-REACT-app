@@ -1,0 +1,22 @@
+import axios from "axios"
+import { getToken } from "../utils/token"
+
+
+//Creat an axios instance, with the base URL defined in the environment variables
+const api = axios.create({
+    baseURL:`${import.meta.env.VITE_API_URL}/baskets`
+})
+
+//Index all baskets
+export const showAllBaskets =()=>{
+    return api.get(``,{
+    headers: {Authorization: `Bearer ${getToken()}`}
+}
+)}
+
+//Index all baskets
+export const createNewBasket =(formData)=>{
+    return api.post('/new/',formData,{
+    headers: {Authorization: `Bearer ${getToken()}`}
+}
+)}

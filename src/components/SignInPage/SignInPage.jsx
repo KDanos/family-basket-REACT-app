@@ -36,12 +36,9 @@ const SignInPage = () => {
             
             //Get the user from local storage and set it to the globle state user variable
             setUser(getUserFromToken())
-            console.log(user)
-            // navigate(`/profile/${user.id}`)
+            navigate(`/baskets`)
         } catch (error) {
-            console.log('============The error looks like==========')
-            console.log(error)
-            // setErrorData(error.response.data)
+            setErrorData(error.response?.data || {detail:'Error during sign in. Please try again later.'} )
         }
     }
 

@@ -1,0 +1,77 @@
+.card-middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#card-content p{
+    
+    margin: 4px 0;
+    text-align:left
+}
+
+/* Common button styles */
+.card-status-button {
+    /* background-color: #29b4f5; */
+    border-radius: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    color: white;
+    font-weight: 500;
+    min-width: 100px;
+    display:flex;
+    align-items: center;
+    gap: 8px;
+}
+
+status-icon{
+    font-size: 1.2em;
+}
+
+/* Pendig Status */
+.status-pending {
+    background-color: #29b4f5;
+}
+.status-pending:hover {
+    background-color: #8FD9FB;
+}
+
+.card-status-button:active {
+    background-color: #8FD9FB;
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Open Status */
+.status-open {
+    background-color: #4CAF50;
+}
+
+.status-open:hover {
+    background-color: #66BB6A;
+}
+
+.status-open:active {
+    background-color: #66BB6A;
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Completed Status */
+.status-completed {
+    background-color: #FFA726;
+}
+
+.status-completed:hover {
+    background-color: #FFB74D;
+}
+
+.status-completed:active {
+    background-color: #FFB74D;
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

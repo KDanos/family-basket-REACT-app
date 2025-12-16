@@ -1,0 +1,30 @@
+.basket-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.basket-card-container {
+    width: 100%;
+    border: 1px solid grey;
+    border-radius: 8px;
+    margin: 10px auto;
+}
+
+.basket-page-wrapper {
+    align-self: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+}
+
+.user-page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
