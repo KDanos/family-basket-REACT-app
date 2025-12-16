@@ -1,7 +1,13 @@
 import BasketIndexPage from '../BasketIndex/BasketIndex'
 import './BasketCard.css'
+import { useNavigate } from 'react-router'
+import { updateBasketStatus } from '../../services/basketServices'
 
-const BasketCard = ({ basket }) => {
+const BasketCard = ({ basket,onStatusUpdate }) => {
+    //Navigation
+    const navigate = useNavigate()
+
+    //Static variables
     const createDate = new Date(basket.created_at).toDateString()
     const owner = basket.owner.username
     const shared = basket.shared_with.map(user => user.username).join(', ')
@@ -9,20 +15,49 @@ const BasketCard = ({ basket }) => {
     let statusIcon = ''
     let statusClass = ''
 
-    if (status.toLowerCase()=== 'open'){
+    if (status.toLowerCase() === 'open') {
         statusIcon = '🎁'
-        statusClass = 'open'
-    } else if (status.toLowerCase()==='completed'){
+        statusClass = 'status-open'
+    } else if (status.toLowerCase() === 'completed') {
         statusIcon = '✓'
         statusClass = 'status-completed'
-    } else if (status.toLowerCase()==='pending'){
+    } else if (status.toLowerCase() === 'pending') {
         statusIcon = '🕒'
         statusClass = 'status-pending'
     }
 
+    //Functions
+    const handleCardClick = (e) => {
+        navigate(`/baskets/${basket.id}`)
+    }
 
+    const handleBasketStatus = async (e) => {
+        e.stopPropagation()//Stops us from going to the basketShow page
+        e.preventDefault()
+        let newStatus
+        if (status.toLowerCase() === 'pending') {
+            newStatus = 'Open'
+        } else if (status.toLowerCase() === 'open') {
+            newStatus = 'Completed'
+        } else {
+            newStatus = 'Pending'
+        }
+
+        try {
+            await updateBasketStatus(basket.id, newStatus)
+            console.log(`Status updated to ${newStatus}`)
+
+            // Trigger parent to refetch data
+            if (onStatusUpdate) {
+                onStatusUpdate()
+            }
+        } catch (error) {
+            console.error('Error updating status:', error)
+        }
+    }
     return (
-        <>
+
+        <div className="basket-card-clickable" onClick={handleCardClick}>
             <h2>{`${basket.name}`}</h2>
             <div className="card-middle">
                 <div id="card-content">
@@ -33,15 +68,19 @@ const BasketCard = ({ basket }) => {
                     <p>Shared with:</p>
                     <p>{shared}</p>
                 </div>
-                <div id="card-status">
-                    <button className={`card-status-button ${statusClass}`}>
+                <div id="card-status" >
+                    <button className={`card-status-button ${statusClass}`}
+                        onClick={handleBasketStatus}
+                        type='button'
+                    >
                         <span>{statusIcon}</span>
-                        {status}
+                        <span>{status}</span>
                     </button>
                 </div>
             </div>
             <div className="card-bottom"></div>
-        </>
+        </div>
+
     )
 }
 

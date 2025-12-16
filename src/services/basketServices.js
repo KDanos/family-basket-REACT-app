@@ -20,3 +20,10 @@ export const createNewBasket =(formData)=>{
     headers: {Authorization: `Bearer ${getToken()}`}
 }
 )}
+
+// Update basket status
+export const updateBasketStatus = (basketId, newStatus) => {
+    return api.put(`${basketId}/`, { status: newStatus }, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+    })
+}

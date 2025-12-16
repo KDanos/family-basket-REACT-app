@@ -4,13 +4,33 @@
     justify-content: space-between;
 }
 
-#card-content p {
-
-    margin: 4px 0;
-    text-align: left
+#card-content {
+    text-align: left;
 }
 
-/* Common button styles */
+#card-content p {
+    margin: 4px 0;
+    text-align: left;
+}
+
+/* Basket Card Clickable Container */
+.basket-card-clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.basket-card-clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.basket-card-clickable:active {
+    transform: translateY(0);
+}
+
+/* Status Button - Higher z-index to be on top */
 .card-status-button {
     border-radius: 16px;
     padding: 10px 20px;
@@ -25,17 +45,20 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    z-index: 100;  /* Much higher to ensure it's on top */
+    pointer-events: auto;  /* Ensure button is clickable */
 }
 
 .card-status-button * {
-    pointer-events: none;  /* Makes child elements non-interactive */
+    pointer-events: none;  /* Only children are non-interactive */
 }
 
-status-icon {
+.status-icon {
     font-size: 1.2em;
 }
 
-/* Pending Status */
+/* Pending Status - Blue */
 .status-pending {
     background-color: #29b4f5;
 }
@@ -44,15 +67,15 @@ status-icon {
     background-color: #8FD9FB;
 }
 
-.card-status-button:active {
+.status-pending:active {
     background-color: #8FD9FB;
     transform: scale(0.98);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Open Status */
+/* Open Status - Green */
 .status-open {
-    background-color: #4CAF50;;
+    background-color: #4CAF50;
 }
 
 .status-open:hover {
@@ -65,7 +88,7 @@ status-icon {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Completed Status */
+/* Completed Status - Orange */
 .status-completed {
     background-color: #FFA726;
 }
@@ -78,19 +101,4 @@ status-icon {
     background-color: #FFB74D;
     transform: scale(0.98);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.basket-card-clickable {
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    padding: 0 10px;
-}
-
-.basket-card-clickable:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.basket-card-clickable:active {
-    transform: translateY(0);
 }

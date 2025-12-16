@@ -16,21 +16,21 @@ const BasketIndexPage = () => {
     const [baskets, setBaskets] = useState([])
 
     //Functions    
-    useEffect(() => {
-        const getAllBaskets = async () => {
-            try {
-                const allBaskets = await showAllBaskets(user.id)
-                setBaskets(allBaskets.data)
-            } catch (error) {
-            }
+    const refreshBaskets = async () => {
+        try {
+            const allBaskets = await showAllBaskets(user.id)
+            //Sort baskets in descending pk order
+            const sortedBaskets = allBaskets.data.sort((a, b) => b.id - a.id)
+            setBaskets(allBaskets.data)
+        } catch (error) {
+            console.error('Error refreshing baskets:', error)
         }
-        getAllBaskets()
+    }
+
+    useEffect(() => {
+        refreshBaskets()
     }, [])
 
-
-
-    console.log('Number of baskets:', baskets.length)
-console.log('All baskets:', baskets)
     return (
         <>
             <div className="basket-page-wrapper">
@@ -38,17 +38,17 @@ console.log('All baskets:', baskets)
                     <button className="form-button" onClick={() => navigate('new/')}>
                         Make new list
                     </button>
+                    <div className="basket-container">
+                        {baskets.map((basket) => (
+                            <div className="basket-card-container" key={basket.id}>
+                                <BasketCard 
+                                basket={basket}
+                                onStatusUpdate={refreshBaskets} />
 
-                    
-                        <div className="basket-container">
-                            {baskets.map((basket) => (
-                                <div className="basket-card-container" key={basket.id}>
-                                    <BasketCard basket={basket} />
-                                    {console.log(basket)}
-                                </div>
-                            ))}
-                        </div>
-                    
+                            </div>
+                        ))}
+                    </div>
+
 
 
 
