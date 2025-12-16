@@ -1,12 +1,17 @@
 import { useNavigate } from 'react-router'
 import { signIn } from '../../services/authService'
 import './SignInPage.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { setToken, getUserFromToken } from '../../utils/token'
+import { UserContext } from '../../context/UserContext'
 
 
 const SignInPage = () => {
+    //Context
+    const {user, setUser} =useContext(UserContext)
+    //Navigation
     const navigate = useNavigate()
-    
+
     //State Variables
     const [formData, setFormData] = useState({
         username: "",
@@ -16,17 +21,27 @@ const SignInPage = () => {
 
     //Functions
     const handleChange = (e) => {
-        setFormData ({...formData, [e.target.name] : e.target.value})
-        setErrorData ({})
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+        setErrorData({})
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
+            console.log('Calling signIn...')
             const response = await signIn(formData)
-            navigate('/index')
+            //Save the token to local storage
+            const token = response.data.access
+            if (token) setToken(token)
+            
+            //Get the user from local storage and set it to the globle state user variable
+            setUser(getUserFromToken())
+            console.log(user)
+            // navigate(`/profile/${user.id}`)
         } catch (error) {
-            setErrorData(error.response.data)
+            console.log('============The error looks like==========')
+            console.log(error)
+            // setErrorData(error.response.data)
         }
     }
 
@@ -36,12 +51,12 @@ const SignInPage = () => {
             <div id="input-container">
                 <label htmlFor="username" hidden></label>
                 <input type="text" id="username" name="username" placeholder='Username' required onChange={handleChange} />
-                
+
 
                 <label htmlFor="password" hidden></label>
                 <input type="password" id="password" name="password" placeholder="password" required onChange={handleChange} />
                 {errorData.detail && <p className="error-message">{`${errorData.detail}`}</p>}
-                
+
                 <button type="submit" className="form-button">Sign-in</button>
             </div>
             <div id="footer">

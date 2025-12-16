@@ -4,7 +4,7 @@ import { signUp} from '../../services/authService'
 import { Navigate } from 'react-router'
 
 const SignUpPage = () => {
-    const navigate = Navigate()
+    // const navigate = Navigate()
     
     //StateVariable
     const [formData, setFormData] = useState({

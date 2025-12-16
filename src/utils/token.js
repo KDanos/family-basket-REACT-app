@@ -16,9 +16,9 @@ export const removeToken = () => {
 }
 
 //Get the userdata from the token
-const getUserFromToken = (token) => {
+export const getUserFromToken = () => {
     // 1. Get the token from local Storage
-    const token = getToken(token)
+    const token = getToken()
     // 2. Error Catcher: If there is not token, return null
     if (!token) { return null }
     // 3. Get the middle payload of the token
