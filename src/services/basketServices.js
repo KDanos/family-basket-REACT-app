@@ -41,3 +41,10 @@ export const getBasket = (basketId) => {
         {headers: {Authorization: `Bearer ${getToken()}`}}
     )
 }
+
+//Create a new item
+export const addItem = (basketId, itemData)=>{
+    return api.post (`${basketId}/items/`,itemData, {
+        headers: {Authorization: `Bearer ${getToken()}`}
+    }
+    )}

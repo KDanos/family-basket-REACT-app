@@ -4,6 +4,7 @@ import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { UserContext } from '../../context/UserContext'
 import { createNewBasket } from '../../services/basketServices'
+import BasketShow from '../BasketShow/BasketShow'
 
 
 
@@ -23,7 +24,6 @@ const NewBasketPage = () => {
     const [keepOpen, setKeepOpen] = useState(false)
     const [errorData, setErrorData] = useState({})
 
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
         setErrorData({})
@@ -33,16 +33,13 @@ const NewBasketPage = () => {
         e.preventDefault()
         //Add the status variable 
         
-        
         const dataWithStatus = ({
             ...formData,
             status: keepOpen ? 'Open' : 'Pending'
         })
-       
-        console.log ('the status is ', status)
         setFormData (dataWithStatus)
         const response = await createNewBasket(dataWithStatus)
-        navigate(-1)
+        navigate(`/baskets/${response.data.id}`)
     }
     return (
         <form id="auth-form" onSubmit={handleSubmit}>
@@ -64,8 +61,6 @@ const NewBasketPage = () => {
                     </label>
                 </div>
                 <button type="submit" className="form-button">Add some items to the basket!</button>
-
-
             </div>
 
             <div id="footer">

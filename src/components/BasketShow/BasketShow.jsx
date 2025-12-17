@@ -1,13 +1,15 @@
-import { getBasket } from '../../services/basketServices'
+import { getBasket, addItem } from '../../services/basketServices'
 import './BasketShow.css'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import { handleBasketStatus } from '../../utils/basketUtils'
+// import { addItem } from '../../services/itemServices'
 
 
 const BasketShow = () => {
     //State variables
     const [basket, setBasket] = useState(null)
+    const [itemName, setItemName] = useState('')
 
     //Static variables
     const { basketId } = useParams()
@@ -15,12 +17,9 @@ const BasketShow = () => {
     //Functions
     useEffect(() => {
         const retrieveBasket = async () => {
-            console.log('======================================')
             try {
-                console.log(`the basket id is ${basketId}`)
                 const response = await getBasket(basketId)
                 setBasket(response.data)
-                console.log(response)
             } catch (error) {
                 console.error('Basket not currently available')
             }
@@ -31,6 +30,7 @@ const BasketShow = () => {
     //Guard in case anything tries to load before the basket it fetched
     if (!basket) return null
 
+    //Variables
     const createDate = new Date(basket.created_at).toDateString()
     const owner = basket.owner.username
     const shared = basket.shared_with.map(user => user.username).join(', ')
@@ -52,6 +52,24 @@ const BasketShow = () => {
     const refreshBasket = async () => {
         const response = await getBasket(basketId)
         setBasket(response.data)
+    }
+
+    const handleChange = (e) => {
+        setItemName(e.target.value)
+    }
+
+    const handleCreateItem = async (e) => {
+        e.preventDefault()
+
+        try {
+            await addItem(basketId, { name: itemName })
+            setItemName('')
+            await refreshBasket()
+            setItemName('')
+        }
+        catch (error) {
+            console.error('Item failed to create', error)
+        }
     }
 
     return (
@@ -89,11 +107,28 @@ const BasketShow = () => {
                 </div>
                 <div className="card-bottom"></div>
             </div >
-            <div className="basket-show-items">
-            </div>
-            
 
-        </div>
+            <div className="basket-show-items">
+                <form className="item-submit-form" onSubmit={handleCreateItem}>
+                    <label htmlFor="item-input"></label>
+                    <input type="text"
+                        className="item-input-box"
+                        name="item-input"
+                        onChange={handleChange}
+                        onSubmit={handleCreateItem}
+                        value = {itemName}
+                        placeholder="Add an item to the list" />
+                    <button type="submit" className="add-button">+</button>
+                </form>
+                <div className="list-container">
+                    {basket.basket_items.map((item) => (
+                        <p key={item.id}>{item.name}</p>
+                    ))}
+                </div>
+            </div>
+
+
+        </div >
     )
 }
 
