@@ -46,7 +46,13 @@ const NavBar = () => {
             <div className="NavBar-info">
                 {user ? (
                     <>
-                        <p style={{ fontWeight: 'bold' }}> {user.username}</p>
+                        <button 
+                        className="link-button"
+                        style={{ fontWeight: 'bold' }}
+                         onClick={()=>{navigate ('/baskets')}}>
+                        {user.username}
+                        </button>
+  
                         <button className="link-button" onClick={handleLogOut}>Logout</button>
                         <button className="link-button" onClick={handleDelete}>Delete Account</button>
                     </>

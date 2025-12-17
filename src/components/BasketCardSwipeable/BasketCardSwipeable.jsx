@@ -33,7 +33,6 @@ const BasketCardSwipeable = ({ basket, onStatusUpdate }) => {
                 }
             } catch (error) {
                 console.error('Error deleting basket:', error)
-
                 alert('Failed to delete the basket. Please try again later')
             }
         }
@@ -50,11 +49,9 @@ const BasketCardSwipeable = ({ basket, onStatusUpdate }) => {
         currentX.current = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX
         const diff = currentX.current - startX.current
 
-        console.log('Move - diff:', diff, 'currentX:', currentX.current)
         //Only allow dragging to the left
         if (diff < 0) {
             setDragX(Math.max(diff, -150))//limit the drag to -150px
-            console.log('Setting dragX to:', Math.max(diff, -150))
         }
     }
 
@@ -65,22 +62,14 @@ const BasketCardSwipeable = ({ basket, onStatusUpdate }) => {
         //Use ref hook rather than state hook. State does not update untill re-render
         const diff = currentX.current - startX.current
 
-        console.log('=== DRAG END ===')
-        console.log('startX:', startX.current)
-        console.log('currentX:', currentX.current)
-        console.log('diff:', diff)
-        console.log('Current dragX state:', dragX)
-
         //Reset startX for next drag
         startX.current = currentX.current - dragX
 
         //Snap to locked or closed poisition
         if (diff<-80) {
-            console.log ('locking at -150')
             setDragX (-150)
             setShowDelete(true)
         } else {
-            console.log('Snappinng back to 0')
                 setDragX(0)
                 setShowDelete (true)
         }

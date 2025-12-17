@@ -14,7 +14,7 @@ export const showAllBaskets =()=>{
 }
 )}
 
-//Index all baskets
+//Create a new basket
 export const createNewBasket =(formData)=>{
     return api.post('/new/',formData,{
     headers: {Authorization: `Bearer ${getToken()}`}
@@ -33,4 +33,11 @@ export const deleteBasket = (basketId) => {
     return api.delete(`${basketId}/`,
         {headers: {Authorization: `Bearer ${getToken()}`}
     })
+}
+
+//Retrieve a basket details
+export const getBasket = (basketId) => {
+    return api.get (`${basketId}/`,
+        {headers: {Authorization: `Bearer ${getToken()}`}}
+    )
 }

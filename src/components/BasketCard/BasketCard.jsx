@@ -2,8 +2,10 @@ import BasketIndexPage from '../BasketIndex/BasketIndex'
 import './BasketCard.css'
 import { useNavigate } from 'react-router'
 import { updateBasketStatus } from '../../services/basketServices'
+import { handleBasketStatus } from '../../utils/basketUtils'
 
 const BasketCard = ({ basket,onStatusUpdate }) => {
+    
     //Navigation
     const navigate = useNavigate()
 
@@ -31,30 +33,30 @@ const BasketCard = ({ basket,onStatusUpdate }) => {
         navigate(`/baskets/${basket.id}`)
     }
 
-    const handleBasketStatus = async (e) => {
-        e.stopPropagation()//Stops us from going to the basketShow page
-        e.preventDefault()
-        let newStatus
-        if (status.toLowerCase() === 'pending') {
-            newStatus = 'Open'
-        } else if (status.toLowerCase() === 'open') {
-            newStatus = 'Completed'
-        } else {
-            newStatus = 'Pending'
-        }
-
-        try {
-            await updateBasketStatus(basket.id, newStatus)
-            console.log(`Status updated to ${newStatus}`)
-
-            // Trigger parent to refetch data
-            if (onStatusUpdate) {
-                onStatusUpdate()
-            }
-        } catch (error) {
-            console.error('Error updating status:', error)
-        }
-    }
+    // const handleBasketStatus = async (e) => {
+    //     e.stopPropagation()//Stops us from going to the basketShow page
+    //     e.preventDefault()
+    //     let newStatus
+    //     if (status.toLowerCase() === 'pending') {
+    //         newStatus = 'Open'
+    //     } else if (status.toLowerCase() === 'open') {
+    //         newStatus = 'Completed'
+    //     } else {
+    //         newStatus = 'Pending'
+    //     }
+    //     try {
+    //         await updateBasketStatus(basket.id, newStatus)
+    //         console.log(`Status updated to ${newStatus}`)
+    //         // Trigger parent to refetch data
+    //         if (onStatusUpdate) {
+    //             onStatusUpdate()
+    //         }
+    //     } catch (error) {
+    //         console.error('Error updating status:', error)
+    //     }
+    // }
+    
+    
     return (
 
         <div className="basket-card-clickable" onClick={handleCardClick}>
@@ -64,13 +66,22 @@ const BasketCard = ({ basket,onStatusUpdate }) => {
                     <p>Created:</p>
                     <p>{createDate}</p>
                     <p></p>
-                    <p>{owner}</p>
+                    <p>By: {owner}</p>
+                    {(basket.shared_with.length===0)
+                     ? 
+                     <p style={{fontStyle:'italic'}}>'Just you on this list'</p>
+                    :(
+                    <>
                     <p>Shared with:</p>
-                    <p>{shared}</p>
+                    <p style={{fontStyle:'italic'}}>{shared}</p>     
+                    </>
+                    )
+                }
+   
                 </div>
                 <div id="card-status" >
                     <button className={`card-status-button ${statusClass}`}
-                        onClick={handleBasketStatus}
+                        onClick={(e)=>handleBasketStatus(e,basket,onStatusUpdate)}
                         type='button'
                     >
                         <span>{statusIcon}</span>
@@ -80,7 +91,6 @@ const BasketCard = ({ basket,onStatusUpdate }) => {
             </div>
             <div className="card-bottom"></div>
         </div>
-
     )
 }
 
