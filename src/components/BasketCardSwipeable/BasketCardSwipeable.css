@@ -1,0 +1,60 @@
+.swipeable-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.swipeable-delete-bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.swipeable-delete-button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.swipeable-delete-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.swipeable-cancel-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.swipeable-cancel-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.swipeable-card-container {
+    position: relative;
+    z-index: 2;
+    user-select: none;
+}

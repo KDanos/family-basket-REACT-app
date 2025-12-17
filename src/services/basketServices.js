@@ -27,3 +27,10 @@ export const updateBasketStatus = (basketId, newStatus) => {
         headers: { Authorization: `Bearer ${getToken()}` }
     })
 }
+
+//Delete a basket
+export const deleteBasket = (basketId) => {
+    return api.delete(`${basketId}/`,
+        {headers: {Authorization: `Bearer ${getToken()}`}
+    })
+}

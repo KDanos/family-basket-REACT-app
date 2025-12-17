@@ -84,7 +84,15 @@ status-icon {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     padding: 0 10px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    background: #CCEEFF;
 }
+
+
+    /* background-color: #CCEEFF;  Much lighter */
+
+    /* background-color: #F0F9FF; Almost white */
 
 .basket-card-clickable:hover {
     transform: translateY(-2px);

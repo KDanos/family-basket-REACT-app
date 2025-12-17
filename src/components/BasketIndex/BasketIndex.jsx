@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { showAllBaskets } from '../../services/basketServices'
 import BasketCard from '../BasketCard/BasketCard'
+import BasketCardSwipeable from '../BasketCardSwipeable/BasketCardSwipeable'
 import { useNavigate } from 'react-router'
 
 const BasketIndexPage = () => {
@@ -41,7 +42,8 @@ const BasketIndexPage = () => {
                     <div className="basket-container">
                         {baskets.map((basket) => (
                             <div className="basket-card-container" key={basket.id}>
-                                <BasketCard 
+                                {/* <BasketCard  */}
+                                <BasketCardSwipeable
                                 basket={basket}
                                 onStatusUpdate={refreshBaskets} />
 
