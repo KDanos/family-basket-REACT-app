@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getToken } from '../utils/token'
 
 //Creat an axios instance, with the base URL defined in the environment variables
 const api = axios.create ({
@@ -21,4 +22,12 @@ export const signUp = (formData) =>{
 export const signIn = (formData) =>{
     return api.post ('sign-in/', formData)
 }
+
+//Delete account
+export const deleteAccount = (userId) =>{
+    return api.delete(`${userId}/`,
+        {headers: {Authorization: `Bearer ${getToken()}`}
+        })
+}
+
 

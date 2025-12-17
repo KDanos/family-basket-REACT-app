@@ -14,10 +14,12 @@ import { UserContext } from './context/UserContext'
 
 const App = () => {
 
+  const {user} = useContext(UserContext)
   return (
     <>
       <main>
-        <NavBar />
+        {user && <NavBar />}
+        
         <div className="route-container">
           <Routes>
             <Route path ="/" element = {<Navigate to='/sign-in' replace/>} />
