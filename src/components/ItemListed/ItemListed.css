@@ -1,0 +1,8 @@
+.bought{
+    text-decoration: line-through;
+    text-decoration-color: black;
+}
+
+.ignored {
+    color: grey;
+}

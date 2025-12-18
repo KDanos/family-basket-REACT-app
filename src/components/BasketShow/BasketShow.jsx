@@ -3,6 +3,7 @@ import './BasketShow.css'
 import { useParams } from 'react-router'
 import { useEffect, useState } from 'react'
 import { handleBasketStatus } from '../../utils/basketUtils'
+import ItemListed from '../ItemListed/ItemListed'
 // import { addItem } from '../../services/itemServices'
 
 
@@ -122,7 +123,10 @@ const BasketShow = () => {
                 </form>
                 <div className="list-container">
                     {basket.basket_items.map((item) => (
-                        <p key={item.id}>{item.name}</p>
+                        <ItemListed
+                        key = {item.id}
+                        item={item}
+                        />
                     ))}
                 </div>
             </div>
