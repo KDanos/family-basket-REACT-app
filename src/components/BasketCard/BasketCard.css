@@ -87,6 +87,8 @@ status-icon {
     border: 1px solid grey;
     border-radius: 8px;
     background: #CCEEFF;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 

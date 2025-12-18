@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router'
 import NavBar from './components/Navbar/Navbar'
 import SignInPage from './components/SignInPage/SignInPage'
 import SignUpPage from './components/SignUpPage/SignUpPage'
-import BasketIndexPage from './components/BasketIndex/BasketIndex'
+import BasketIndexv2  from './components/BasketIndex/BasketIndex'
 import BasketShow from './components/BasketShow/BasketShow'
 import ProtectAuth from './components/ProtectAuth/ProtectAuth'
 // import UserShowPage from './components/UserShowPage/UserShowPage'
@@ -33,10 +33,8 @@ const App = () => {
                 <SignUpPage />
               </ProtectAuth>
             } />
-
-
             {/* <Route path='/profile/:userId' element={<UserShowPage />} /> */}
-            <Route path='/baskets' element={<BasketIndexPage />} />
+            <Route path='/baskets' element={<BasketIndex />} />
             <Route path='/baskets/new' element={<NewBasketPage />} />
             <Route path='/baskets/:basketId' element={<BasketShow />} />
           </Routes>

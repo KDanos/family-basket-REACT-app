@@ -4,45 +4,75 @@
     justify-content:start;
     align-items: flex-start;
     height: 100%;
-    width: 100%;
+    width: 100%;    
 }
 
 .basket-show-top{
     width: 100%;
 }
 
+.card-middle{
+    display: flex;
+    align-items: stretch;
+
+}
+
+#card-content{
+    height:100%;
+}
+#card-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: flex-end; 
+}
 
 .basket-show-items{
     display: flex;
     flex-direction: column;
     width: 100%;
     height:100%;  
+    
 }
 .item-submit-form{
     display:flex;
     align-items: center;
     margin: 12px 0;
-    
+
 }
 .item-input-box {
-    /* padding: 0px 10px; */
     width: 100%;
     height: 2rem;
-    flex:9;
+    flex:6;
     background-color: white;
     border: none; 
     border-radius: 8px;
     align-content: center;
+
 }
 .add-button {
     flex:1;
+    display: flex;
     background:none;
     color: blue;
     font-size: 30px;
     border: none;
+    max-height:30px;
+    align-items: center;
+    justify-content: center;
+   /* margin-left: 5px;    */
+
 }
 
 .list-container{
     width:100%;
     text-align:left;
+}
+
+.return-button{
+    background:none;
+    color:blue;
+    font-size:30px;
+    border:none
+
 }

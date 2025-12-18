@@ -6,7 +6,7 @@ import { removeToken } from '../../utils/token'
 import { deleteAccount } from '../../services/authService'
 
 const NavBar = () => {
-    const { user, signOut , setUser} = useContext(UserContext)
+    const { user, signOut, setUser } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ const NavBar = () => {
 
     const handleDelete = async () => {
         const confirmDelete = window.confirm('Please confirm deletion of account')
-        if (!confirmDelete){
+        if (!confirmDelete) {
             return
         }
         try {
@@ -38,28 +38,36 @@ const NavBar = () => {
             console.error('Failed to delete the account')
         }
     }
+    const handleReturn = () => (
+        navigate(-1)
+    )
 
     return (
         <div id='NavBar-container'>
-            <span className="Navbar-symbol">👤</span>
+            <div className="navigation-container">
+                <button className="return-button" onClick={() => navigate(-1)}>⟵</button>
+            </div>
+            <div id="NavBar-body">
+                <span className="Navbar-symbol">👤</span>
 
-            <div className="NavBar-info">
-                {user ? (
-                    <>
-                        <button 
-                        className="link-button"
-                        style={{ fontWeight: 'bold' }}
-                         onClick={()=>{navigate ('/baskets')}}>
-                        {user.username}
-                        </button>
-  
-                        <button className="link-button" onClick={handleLogOut}>Logout</button>
-                        <button className="link-button" onClick={handleDelete}>Delete Account</button>
-                    </>
-                ) : (
-                    null
-                )
-                }
+                <div className="NavBar-info">
+                    {user ? (
+                        <>
+                            <button
+                                className="link-button"
+                                style={{ fontWeight: 'bold' }}
+                                onClick={() => { navigate('/baskets') }}>
+                                {user.username}
+                            </button>
+
+                            <button className="link-button" onClick={handleLogOut}>Logout</button>
+                            <button className="link-button" onClick={handleDelete}>Delete Account</button>
+                        </>
+                    ) : (
+                        null
+                    )
+                    }
+                </div>
             </div>
         </div>
     )

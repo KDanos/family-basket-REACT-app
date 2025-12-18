@@ -12,7 +12,6 @@ const ItemListed = ({ item }) => {
 
     //Functions
     useEffect(() => {
-        console.log(`The initial status of ${item.name} is ${item.status}`)
         const initialStatusIndex = statusClassNames.indexOf(item.status)
         setStatusClassNameIndex(initialStatusIndex) 
     }, [])

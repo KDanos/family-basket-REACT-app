@@ -1,9 +1,10 @@
 import { getBasket, addItem } from '../../services/basketServices'
 import './BasketShow.css'
-import { useParams } from 'react-router'
-import { useEffect, useState } from 'react'
+import { useNavigate, useParams,} from 'react-router'
+import { useEffect, useState, } from 'react'
 import { handleBasketStatus } from '../../utils/basketUtils'
 import ItemListed from '../ItemListed/ItemListed'
+import SwipeableElement from '../SwipeableElement/SwipeableElement'
 // import { addItem } from '../../services/itemServices'
 
 
@@ -15,6 +16,8 @@ const BasketShow = () => {
     //Static variables
     const { basketId } = useParams()
 
+    //Navigation
+    const navigate = useNavigate()
     //Functions
     useEffect(() => {
         const retrieveBasket = async () => {
@@ -96,7 +99,7 @@ const BasketShow = () => {
                         }
 
                     </div>
-                    <div id="card-status" >
+                    <div id="card-buttons" >
                         <button className={`card-status-button ${statusClass}`}
                             onClick={(e) => handleBasketStatus(e, basket, refreshBasket)}
                             type='button'
@@ -104,9 +107,12 @@ const BasketShow = () => {
                             <span>{statusIcon}</span>
                             <span>{status}</span>
                         </button>
+                        <button className="add-friend-button"> 👤➕ </button>
                     </div>
                 </div>
-                <div className="card-bottom"></div>
+                <div className="card-bottom">
+                    
+                </div>
             </div >
 
             <div className="basket-show-items">
@@ -123,11 +129,13 @@ const BasketShow = () => {
                 </form>
                 <div className="list-container">
                     {basket.basket_items.map((item) => (
-                        <ItemListed
+                   <SwipeableElement>
+                   <ItemListed
                         key = {item.id}
                         item={item}
                         />
-                    ))}
+                   </SwipeableElement>   
+                   ))}
                 </div>
             </div>
 

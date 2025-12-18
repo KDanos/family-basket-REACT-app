@@ -1,8 +1,8 @@
 import './BasketCardSwipeable.css'
 
 import { useState, useRef } from 'react'
-import { deleteBasket } from '../../services/basketServices'
-import BasketCard from '../BasketCard/BasketCard'
+import { deleteBasket } from '../../src/services/basketServices'
+import BasketCard from '../../src/components/BasketCard/BasketCard'
 
 const BasketCardSwipeable = ({ basket, onStatusUpdate }) => {
     //State variables (for swipe functionality)

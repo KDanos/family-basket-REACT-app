@@ -1,9 +1,9 @@
 import './BasketIndex.css'
 import { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../context/UserContext'
-import { showAllBaskets , deleteBasket } from '../../services/basketServices'
-import BasketCard from '../BasketCard/BasketCard'
-import SwipeableElement from '../SwipeableElement/SwipeableElement'
+import { UserContext } from '../src/context/UserContext'
+import { showAllBaskets } from '../src/services/basketServices'
+import BasketCard from '../src/components/BasketCard/BasketCard'
+import BasketCardSwipeable from './BasketCardSwipeable/BasketCardSwipeable'
 import { useNavigate } from 'react-router'
 
 const BasketIndex = () => {
@@ -32,23 +32,6 @@ const BasketIndex = () => {
         refreshBaskets()
     }, [])
 
-    //Functions
-    const handleDeleteCard = async (basketId) => {
-        //Two step delete confirmation 
-        const confirm = window.confirm('Are you sure you want to delete this basket?')
-
-        if (confirm) {
-            try {
-                await deleteBasket(basketId)
-                console.log('Basket has been deleted successfully!')
-                await refreshBaskets()
-            } catch (error) {
-                console.error('Error deleting basket:', error)
-                alert('Failed to delete the basket. Are you sure you have permission to do so?')
-            }
-        }
-    }
-
     return (
         <>
             <div className="basket-page-wrapper">
@@ -59,12 +42,11 @@ const BasketIndex = () => {
                     <div className="basket-container">
                         {baskets.map((basket) => (
                             <div className="basket-card-container" key={basket.id}>
-                                <SwipeableElement
-                                    onDelete={()=>handleDeleteCard(basket.id)}>
-                                    <BasketCard
-                                        basket={basket}
-                                        onStatusUpdate={refreshBaskets} />
-                                </SwipeableElement>
+                                {/* <BasketCard  */}
+                                <BasketCardSwipeable
+                                basket={basket}
+                                onStatusUpdate={refreshBaskets} />
+
                             </div>
                         ))}
                     </div>

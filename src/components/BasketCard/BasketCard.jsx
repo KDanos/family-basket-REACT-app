@@ -1,4 +1,4 @@
-import BasketIndexPage from '../BasketIndex/BasketIndex'
+import BasketIndexPage from '../../../ToDelete/BasketIndex-redundant'
 import './BasketCard.css'
 import { useNavigate } from 'react-router'
 import { updateBasketStatus } from '../../services/basketServices'
@@ -32,30 +32,6 @@ const BasketCard = ({ basket,onStatusUpdate }) => {
     const handleCardClick = (e) => {
         navigate(`/baskets/${basket.id}`)
     }
-
-    // const handleBasketStatus = async (e) => {
-    //     e.stopPropagation()//Stops us from going to the basketShow page
-    //     e.preventDefault()
-    //     let newStatus
-    //     if (status.toLowerCase() === 'pending') {
-    //         newStatus = 'Open'
-    //     } else if (status.toLowerCase() === 'open') {
-    //         newStatus = 'Completed'
-    //     } else {
-    //         newStatus = 'Pending'
-    //     }
-    //     try {
-    //         await updateBasketStatus(basket.id, newStatus)
-    //         console.log(`Status updated to ${newStatus}`)
-    //         // Trigger parent to refetch data
-    //         if (onStatusUpdate) {
-    //             onStatusUpdate()
-    //         }
-    //     } catch (error) {
-    //         console.error('Error updating status:', error)
-    //     }
-    // }
-    
     
     return (
 

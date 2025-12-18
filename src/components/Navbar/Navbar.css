@@ -1,4 +1,13 @@
-#NavBar-container{ 
+#NavBar-container{
+    display:flex;
+    flex-direction: column;
+}
+.navigation-container{
+display:flex;
+justify-content: flex-end;
+}
+
+#NavBar-body{ 
 top: 0;
 flex:1;
 left: 0px;
@@ -11,7 +20,6 @@ box-sizing: border-box;
 }
 
 .Navbar-symbol{
-    /* height: 20px; */
     font-size:60px;
     display:flex;
     align-items: center;
