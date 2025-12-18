@@ -23,7 +23,6 @@ const App = () => {
         <div className="route-container">
           <Routes>
             <Route path="/" element={<Navigate to='/sign-in' replace />} />
-
             <Route path="/sign-in" element={
               <ProtectAuth>
                 <SignInPage />

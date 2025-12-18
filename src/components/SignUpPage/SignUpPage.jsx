@@ -4,6 +4,7 @@ import { signUp, signIn} from '../../services/authService'
 import { setToken, getUserFromToken} from '../../utils/token'
 import { useNavigate } from 'react-router'
 import { UserContext } from '../../context/UserContext'
+import logoImage from '../../images/logos/Gemini_Generated_Image_561anw561anw561a (1).png'
 
 const SignUpPage = () => {
     const navigate = useNavigate()
@@ -52,7 +53,9 @@ const SignUpPage = () => {
 
     return (
         <>
-
+        <div className="logo-container">
+            <img src={logoImage} alt="basket.logo" />
+        </div>
             <form id="auth-form" onSubmit={handleSubmit}>
                 <h2>Create an account</h2>
                 <div id="input-container">

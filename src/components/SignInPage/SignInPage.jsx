@@ -4,6 +4,7 @@ import './SignInPage.css'
 import { useState, useContext } from 'react'
 import { setToken, getUserFromToken } from '../../utils/token'
 import { UserContext } from '../../context/UserContext'
+import logoImage from '../../images/logos/Gemini_Generated_Image_561anw561anw561a (1).png'
 
 
 const SignInPage = () => {
@@ -43,6 +44,10 @@ const SignInPage = () => {
     }
 
     return (
+        <>
+        <div className="logo-container">
+            <img src={logoImage} alt="basket.logo" />
+        </div>
         <form id="auth-form" onSubmit={handleSubmit}>
             <h2>Sign in</h2>
             <div id="input-container">
@@ -60,8 +65,8 @@ const SignInPage = () => {
                 <p>Don't have an account yet?</p>
                 <a href="/sign-up">Register</a>
             </div>
-
         </form>
+        </>
     )
 }
 
