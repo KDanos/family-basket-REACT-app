@@ -78,7 +78,10 @@
 
 .add-friend-button {
     background: none;
-    border:
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    cursor:pointer;
 }
 
 .friend-dropdown {
@@ -103,6 +106,7 @@
 .user-search-input {
     width: 100%;
     padding: 8px;
+    margin-top:8px;
     margin-bottom: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -125,7 +129,7 @@
     background-color: #f5f5f5;
 }
 
-.user-option input[type="radio"] {
+.user-option input[type="checkbox"] {
     margin-right: 8px;
 }
 
@@ -148,6 +152,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .cancel-button {
@@ -155,6 +161,10 @@
 }
 
 .dropdown-actions .add-button {
-    background-color: #4CAF50;
+    background-color: #29b4f5;
     color: white;
-}
+    max-height: none !important;  
+    flex: none !important;  
+    display: inline-block important;  
+    align-items: normal important; 
+    justify-content:space-between important;
