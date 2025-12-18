@@ -30,4 +30,10 @@ export const deleteAccount = (userId) =>{
         })
 }
 
+//Index all users
+export const getAllUsers = () => {
+    return api.get('/',
+        {headers:{Authorization:`Bearer ${getToken()}`}}
+    )
+}
 

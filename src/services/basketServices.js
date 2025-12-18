@@ -28,6 +28,13 @@ export const updateBasketStatus = (basketId, newStatus) => {
     })
 }
 
+//Edit a basket
+export const editBasket = (basketId, formData) => {
+    return api.put (`${basketId}/`,formData,
+    {headers: {Authorization: `Bearer ${getToken()}`}
+})
+}
+
 //Delete a basket
 export const deleteBasket = (basketId) => {
     return api.delete(`${basketId}/`,
@@ -41,6 +48,8 @@ export const getBasket = (basketId) => {
         {headers: {Authorization: `Bearer ${getToken()}`}}
     )
 }
+
+
 
 //Create a new item
 export const addItem = (basketId, itemData)=>{
