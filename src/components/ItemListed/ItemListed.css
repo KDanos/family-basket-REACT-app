@@ -6,3 +6,14 @@
 .ignored {
     color: lightgrey;
 }
+
+.bought,
+.ignored,
+.active {
+    width: 100%;
+    margin: 0;
+    background: #E0F4FF;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2; 
+}

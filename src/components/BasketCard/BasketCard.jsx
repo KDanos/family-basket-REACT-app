@@ -1,7 +1,7 @@
-import BasketIndexPage from '../../../ToDelete/BasketIndex-redundant'
+
 import './BasketCard.css'
 import { useNavigate } from 'react-router'
-import { updateBasketStatus } from '../../services/basketServices'
+
 import { handleBasketStatus } from '../../utils/basketUtils'
 
 const BasketCard = ({ basket,onStatusUpdate }) => {

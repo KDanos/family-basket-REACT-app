@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
 import './SwipeableElement.css'
 
-const SwipeableElement = ({ children, onDelete, onEdit }) => {
+const SwipeableElement = ({ children, onDelete, onEdit, maxDrag }) => {
     //Imported variables
-    const maxDrag = 150
+    // const maxDrag = 150
 
     //State Variables
     const [dragX, setDragX] = useState(0)
@@ -50,7 +50,7 @@ const SwipeableElement = ({ children, onDelete, onEdit }) => {
         e.stopPropagation()
         e.preventDefault()
         console.log('Delete button clicked')
-        if(onDelete){
+        if (onDelete) {
             onDelete()
         }
     }
@@ -70,12 +70,17 @@ const SwipeableElement = ({ children, onDelete, onEdit }) => {
             <div className="sliding-wrapper">
 
                 <div className="swipeable-buttons-container">
-                    <button className="swip-del-btn"
-                        onClick={handleDelete}
-                    >🗑️</button>
-                    <button className="swop-edit-btn"
+                    {onDelete && (
+                        <button className="swip-del-btn"
+                            onClick={handleDelete}
+                        >🗑️</button>
+                    )}
+                    {onEdit && (
+                                            <button className="swop-edit-btn"
                         onClick={handleEdit}
                     >✏️</button>
+                    )}
+
                 </div>
                 <div className="sliding-wrapper"
 
@@ -89,9 +94,6 @@ const SwipeableElement = ({ children, onDelete, onEdit }) => {
                     onTouchStart={handleDragStart}
                     onTouchMove={handleDragMove}
                     onTouchEnd={handleDragEnd}
-
-
-
                     style={{
                         transform: `translateX(${dragX}px)`,
                         transition: isDragging ? 'none' : 'transform 0.3s ease',

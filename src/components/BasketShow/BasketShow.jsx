@@ -5,7 +5,7 @@ import { useEffect, useState, } from 'react'
 import { handleBasketStatus } from '../../utils/basketUtils'
 import ItemListed from '../ItemListed/ItemListed'
 import SwipeableElement from '../SwipeableElement/SwipeableElement'
-// import { addItem } from '../../services/itemServices'
+import { deleteItem } from '../../services/itemServices'
 
 
 const BasketShow = () => {
@@ -76,6 +76,22 @@ const BasketShow = () => {
         }
     }
 
+    const handleDeleteItem = async (itemId) => {
+        //Two step delete confirmation 
+        const confirm = window.confirm('Are you sure you want to delete this item?')
+
+        if (confirm) {
+            try {
+                await deleteItem(itemId)
+                console.log('Item has been deleted successfully!')
+                await refreshBasket()
+            } catch (error) {
+                console.error('Error deleting item:', error)
+                alert('Failed to delete the item. Are you sure you have permission to do so?')
+            }
+        }
+    }
+    
     return (
 
         <div className="basket-show-container">
@@ -129,9 +145,12 @@ const BasketShow = () => {
                 </form>
                 <div className="list-container">
                     {basket.basket_items.map((item) => (
-                   <SwipeableElement>
+                   <SwipeableElement
+                   key = {item.id}
+                   onDelete ={()=>handleDeleteItem(item.id)}
+                   maxDrag={40}>
                    <ItemListed
-                        key = {item.id}
+                        
                         item={item}
                         />
                    </SwipeableElement>   
