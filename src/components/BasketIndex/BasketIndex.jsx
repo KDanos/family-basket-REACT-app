@@ -60,7 +60,9 @@ const BasketIndex = () => {
                         {baskets.map((basket) => (
                             <div className="basket-card-container" key={basket.id}>
                                 <SwipeableElement
-                                    onDelete={()=>handleDeleteCard(basket.id)}>
+                                    onDelete={()=>handleDeleteCard(basket.id)}
+                                    maxDrag={150}
+                                    >
                                     <BasketCard
                                         basket={basket}
                                         onStatusUpdate={refreshBaskets} />

@@ -12,9 +12,11 @@ const SwipeableElement = ({ children, onDelete, onEdit, maxDrag }) => {
     //Persistent across renders variables
     const startX = useRef(0)
     const currentX = useRef(0)
+    const clicksDisabled = useRef(false)
 
     //Functions
     const handleDragStart = (e) => {
+        clicksDisabled.current = true
         setIsDragging(true)
         startX.current = e.type.includes('mouse')
             ? e.clientX
@@ -43,9 +45,15 @@ const SwipeableElement = ({ children, onDelete, onEdit, maxDrag }) => {
         if (diff < (-maxDrag / 2))
             setDragX(-maxDrag)
         else setDragX(0)
-
+        setTimeout(() => { clicksDisabled.current = false }, 100)
     }
 
+    const handleClick = (e) => {
+        if (clicksDisabled.current) {
+            e.stopPropagation()
+        }
+    }
+    
     const handleDelete = (e) => {
         e.stopPropagation()
         e.preventDefault()
@@ -76,9 +84,9 @@ const SwipeableElement = ({ children, onDelete, onEdit, maxDrag }) => {
                         >🗑️</button>
                     )}
                     {onEdit && (
-                                            <button className="swop-edit-btn"
-                        onClick={handleEdit}
-                    >✏️</button>
+                        <button className="swop-edit-btn"
+                            onClick={handleEdit}
+                        >✏️</button>
                     )}
 
                 </div>
@@ -89,6 +97,7 @@ const SwipeableElement = ({ children, onDelete, onEdit, maxDrag }) => {
                     onMouseMove={handleDragMove}
                     onMouseUp={handleDragEnd}
                     onMouseLeave={handleDragEnd}
+                    onClick={handleClick}
 
                     //Touch events
                     onTouchStart={handleDragStart}

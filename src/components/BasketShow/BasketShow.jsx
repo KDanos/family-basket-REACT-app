@@ -235,7 +235,7 @@ setSelectedUserIds([])
                                 onClick={()=>{
                                     setShowFriendDropDown(false)
                                     setSearchString('')
-                                    setSelectedUserId (null)
+                                    setSelectedUserIds (null)
                                 }}>Cancel</button>
                             <button className="add-button" onClick={handleAddUserToBasket}>Add</button>
                             </div>
