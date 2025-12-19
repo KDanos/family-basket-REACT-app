@@ -4,7 +4,7 @@ import { signUp, signIn} from '../../services/authService'
 import { setToken, getUserFromToken} from '../../utils/token'
 import { useNavigate } from 'react-router'
 import { UserContext } from '../../context/UserContext'
-import logoImage from '../../images/logos/Gemini_Generated_Image_561anw561anw561a (1).png'
+import logoImage from '../../images/logos/logo.png'
 
 const SignUpPage = () => {
     const navigate = useNavigate()
