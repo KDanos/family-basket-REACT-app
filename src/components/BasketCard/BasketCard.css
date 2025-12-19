@@ -7,7 +7,7 @@
 #card-content p {
 
     margin: 4px 0;
-    text-align: left
+    text-align: left;
 }
 
 /* Common button styles */
@@ -52,7 +52,7 @@ status-icon {
 
 /* Open Status */
 .status-open {
-    background-color: #4CAF50;;
+    background-color: #4CAF50;
 }
 
 .status-open:hover {
